@@ -50,17 +50,22 @@ class Login extends Component{
     render(){
 
         return(
-          <div class="login_total" >
-          {/* 로그인 폼 */}
-          <form class="login_total_foam"
+          <form  
            onSubmit={this.submitHandler} >
            <label><h2>Login</h2></label>
-           <input type="text" name="id"  placeholder='아이디'
-             onChange={this.inputID}  
-             value={this.state.userID} />            
-           <input type="password" name="password"  placeholder='비밀번호' 
-             onChange={this.inputPW}
-             value={this.state.userPW}/> 
+           <input 
+           type="text" 
+           name="id"  
+           placeholder='아이디'
+           onChange={this.inputID}  
+           value={this.state.userID} />            
+           <input 
+           type="password" 
+           name="password"  
+           placeholder='비밀번호' 
+           onChange={this.inputPW}
+            value={this.state.userPW}/> 
+
           {/* 로그인 버튼 */}
            <button type="submit" href="/">로그인</button>
            
