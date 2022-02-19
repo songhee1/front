@@ -42,9 +42,12 @@ class Login extends Component{
   }
   render(){
         return(
+
           <div class="login_total" >
           {/* 로그인 폼 */}
-           <form  
+
+          <form  
+ 
            onSubmit={this.submitHandler} >
            <label><h2>Login</h2></label>
            <input 
