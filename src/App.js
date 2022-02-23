@@ -22,7 +22,20 @@ class App extends Component{
            userpw={this.state.userPW}
            ></Login>
          <Userpage></Userpage>
+         </div> <Router>
+         <div>
+          <Routes> 
+           <Route  
+           userid={this.state.userID}
+           userpw={this.state.userPW}
+           element={<Login />}>
+           </Route>
+          <Route
+           element={<Userpage />}>
+          </Route> 
+         </Routes>
          </div>
+         </Router>
     );
   }
 }
