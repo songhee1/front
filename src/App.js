@@ -1,4 +1,4 @@
-import LoginPage from './LoginPage';
+import LoginPage from './components/LoginPage';
 import UserPage from './components/UserPage';
 import {Routes, Route} from 'react-router-dom';
 import FindoutId from './loginfolder/FindoutId';
