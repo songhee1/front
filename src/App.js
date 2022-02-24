@@ -1,44 +1,18 @@
-import Login from './components/Login';
-import React, { Component } from 'react';
-import Userpage from 'Userpage';
+import LoginPage from './LoginPage';
+import UserPage from './components/UserPage';
+import {Routes, Route} from 'react-router-dom';
+import FindoutId from './loginfolder/FindoutId';
 
-class App extends Component{
-  constructor(props){
-    super(props);
-    this.state={
-      userID:"",
-      userPW:"",
-      nickname:"",
-      isLogin:true
-    };
-  }
-  render(){
+function App(){
     
     return(
-         
-         <div>
-           <Login 
-           userid={this.state.userID}
-           userpw={this.state.userPW}
-           ></Login>
-         <Userpage></Userpage>
-         </div> <Router>
-         <div>
-          <Routes> 
-           <Route  
-           userid={this.state.userID}
-           userpw={this.state.userPW}
-           element={<Login />}>
-           </Route>
-          <Route
-           element={<Userpage />}>
-          </Route> 
-         </Routes>
-         </div>
-         </Router>
+      <div>
+        <Routes> 
+          <Route path="/" element={<LoginPage/>}></Route>
+          <Route path="/findoutId" element={<FindoutId/>}></Route>
+          <Route path="/UserPage" element={<UserPage/>}></Route>
+        </Routes>
+        </div>
     );
   }
-}
-
-
 export default App;
