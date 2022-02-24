@@ -1,69 +1,56 @@
-import React,{Component} from "react";
+import {useState, useEffect} from 'react';
 
-class ChangeNickname extends Component{
-
-
-    NicknameChangeHandler(e){
+function ChangeNickName(){
+    const [newNickname, setnewNickname]=useState("");
+    const [nickname, setNickname]=useState("");
+    const [checkoutNewnickname, setCheckoutNewnickname]=useState(false);
+    const writenickname=(e)=>{
+        setnewNickname(e.target.value);
+    }
+    const checkNickname=(e)=>{
         e.preventDefault();
-        //input태그
-        const input=document.querySelector('.newNickname');
-        const value=input.value;
-        //input 태그값 초기화
-        input.value='';
-
-        const data={
-            nickname:value
-        }
         
-        //닉네임 변경 반영
-        // axios.post('/nickname-change',{
-        //    name:value 
-        // })
-        // .then((response)=>{
-        //     location.reload()
-        // })
-    
-
-        //닉네임 중복 확인
         fetch('user info router',{
             method:"post",
             headers:{"Content-Type":"application/json"},
-            body: JSON.stringify(data)
+            body: JSON.stringify(newNickname)
         })
         .then(res=>res.json())
         .then(json=>{
             if(json.exist===true){
                 alert("이미 존재하는 닉네임입니다.");
+                setnewNickname("");
             }else{
                  alert("사용가능한 닉네임입니다.");
-                 
+                 setCheckoutNewnickname(true);
             }
         })
     }
-
-    NicknameHandler(){
-        
+    const NicknameChangeHandler=()=>{
+        if(checkoutNewnickname===true){
+           setNickname(nickname);
+           alert('닉네임 변경 완료');
+        } else{
+            alert('닉네임 중복을 확인하세요');
+        }
     }
-render(){
 
-        return(
-              <div>
-                  닉네임 변경하기
-                  <input  
-                  type="text"
-                  placeholder="변경하고 싶은 닉네임 입력"
-                  class="newNickname"
-                  />
-                   <button 
-                   onClick={this.NicknameCheck}>중복확인</button>
-                   <button 
-                   onClick={this.NicknameChangeHandler}
-                   class="changeNickname"
-                   >변경하기</button>
-                   <button>뒤로가기</button>
-              </div>
+    return(
+        <div>
+            <h2>닉네임 변경하기</h2>
+            <input  
+            type="text"
+            placeholder="변경하고 싶은 닉네임 입력"
+            value={newNickname}
+            onChange={writenickname}/>
+            <button 
+            onClick={checkNickname}>중복확인</button>
+            <button 
+            onClick={NicknameChangeHandler}
+            class="changeNickname">변경하기</button>
+            <button>뒤로가기</button>
+        </div>
         );
     }
-}
 
-export default ChangeNickname;
+export default ChangeNickName;
